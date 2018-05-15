@@ -54,9 +54,14 @@ class ParserStringToRequest
 
     private function getQuery($firstLine)
     {
+        $pos = strpos($firstLine, '?');
+        $firstLine = substr($firstLine, $pos + 1);
         $array = explode(' ', $firstLine);
+        $firstLine = current($array);
 
-        return array_key_exists(1, $array) ? $array[1] : '';
+        parse_str($firstLine, $arr);
+
+        return is_array($arr) ? $arr: [];
     }
 
     private function parserByCookies($array)
