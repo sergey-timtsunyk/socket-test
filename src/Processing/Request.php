@@ -3,12 +3,12 @@ namespace Socket\Processing;
 
 class Request implements RequestInterface
 {
-    private $query;
+    private $query = [];
     private $method;
     private $cookies;
     private $body;
 
-    public function getQuery(): string
+    public function getQuery(): array
     {
         return $this->query;
     }
@@ -18,9 +18,9 @@ class Request implements RequestInterface
         return $this->method;
     }
 
-    public function getCookie($key): array
+    public function getCookie($key): string
     {
-        return $this->cookies[$key];
+        return array_key_exists($key, $this->cookies) ? $this->cookies[$key] : '';
     }
 
     public function getBody(): string

@@ -3,11 +3,11 @@ namespace Socket\Processing;
 
 interface RequestInterface
 {
-    public function getQuery(): string;
+    public function getQuery(): array;
 
     public function getMethod(): string;
 
-    public function getCookie($key): array;
+    public function getCookie($key): string;
 
     public function getBody(): string;
 }
